@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:layout="@layout/content_main"
+        android:background="@android:color/white"/>
+
+    <SwitchPreference
+        android:title="Send notifications"
+        android:defaultValue="true"
+        android:key="notification_switch"
+        android:summary=""/>
+
+    <ListPreference
+        android:entries="@array/TimeIntervalLists"
+        android:entryValues="@array/TimeIntervalLists"
+        android:defaultValue="1 minute"
+        android:title="Notify time interval"
+        android:key="notify_time_interval"
+        android:summary=""/>
+
+</PreferenceScreen>

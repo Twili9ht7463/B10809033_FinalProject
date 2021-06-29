@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AccountingApp</string>
+    <string name="currency_symbol">$</string>
+
+    <string-array name="TimeIntervalLists">
+        <item>1 minute</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>5 hours</item>
+        <item>24 hours</item>
+    </string-array>
+
+</resources>
