@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AccountingApp</string>
     <string name="currency_symbol">$</string>
+    <string name="Summary_enabled">Enabled</string>
+    <string name="Summary_disabled">Disabled</string>
 
     <string-array name="TimeIntervalLists">
         <item>1 minute</item>

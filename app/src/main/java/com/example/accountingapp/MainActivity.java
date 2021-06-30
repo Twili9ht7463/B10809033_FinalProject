@@ -35,8 +35,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AccountAdapter.ItemClickListener {
 
-    // Constant for logging
-    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int VERTICAL = 1;
     // Member variables for the adapter and RecyclerView
     private RecyclerView mRecyclerView;
@@ -167,9 +165,11 @@ public class MainActivity extends AppCompatActivity implements AccountAdapter.It
             prefsEditor.putBoolean("notification_switch", notify);
             prefsEditor.putString("notify_time_interval", notificationInterval);
             prefsEditor.commit();
+            //For testing
             Log.d("testing committing change onCreate", "success");
             addPreferencesFromResource(R.xml.settings_screen);
             prefs.registerOnSharedPreferenceChangeListener(this);
+            //For testing
             Log.d("testing registering OnSharedPreferenceChangeListener onCreate", "success");
         }
 
@@ -185,8 +185,15 @@ public class MainActivity extends AppCompatActivity implements AccountAdapter.It
             SwitchPreference ns = (SwitchPreference)findPreference("notification_switch");
             ListPreference ni = (ListPreference)findPreference("notify_time_interval");
             String recurringString = Boolean.toString(notify);
-            ns.setSummary(recurringString);
+            if (recurringString.equals("true")) {
+                ns.setSummary(R.string.Summary_enabled);
+            }
+            else{
+                ns.setSummary(R.string.Summary_disabled);
+            }
             ni.setSummary(notificationInterval);
+
+            //For testing
             Log.d("testing registering OnSharedPreferenceChangeListener onResume", "success");
         }
 
@@ -195,12 +202,16 @@ public class MainActivity extends AppCompatActivity implements AccountAdapter.It
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                     .unregisterOnSharedPreferenceChangeListener(this);
+
+            //For testing
             Log.d("testing unregistering OnSharedPreferenceChangeListener", "success");
         }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+            //For testing
             Log.d("onSharedPreferenceChanged is called", "success");
+
             boolean notify = prefs.getBoolean("notification_switch",true);
             String notificationInterval = prefs.getString("notify_time_interval", "");
             SharedPreferences.Editor prefsEditor = prefs.edit();
@@ -209,12 +220,16 @@ public class MainActivity extends AppCompatActivity implements AccountAdapter.It
 
             if (notify) {
                 notifyUser = true;
-                ns.setSummary("True");
+                ns.setSummary(R.string.Summary_enabled);
+
+                //For testing
                 Log.d("notification_switch is now true", "success");
             }
             else {
                 notifyUser = false;
-                ns.setSummary("False");
+                ns.setSummary(R.string.Summary_disabled);
+
+                //For testing
                 Log.d("notification_switch is now false", "success");
             }
 
@@ -222,34 +237,48 @@ public class MainActivity extends AppCompatActivity implements AccountAdapter.It
                 case "1 minute":
                     recurring = 60000;
                     ni.setSummary("1 minute");
+
+                    //For testing
                     Log.d("notify_time_interval is now 1 minute", "success");
                     break;
                 case "30 minutes":
                     recurring = 1800000;
                     ni.setSummary("30 minute");
+
+                    //For testing
                     Log.d("notify_time_interval is now 30 minutes", "success");
                     break;
                 case "1 hour":
                     recurring = 3600000;
                     ni.setSummary("1 hour");
+
+                    //For testing
                     Log.d("notify_time_interval is now 1 hour", "success");
                     break;
                 case "5 hours":
                     recurring = 18000000;
                     ni.setSummary("5 hours");
+
+                    //For testing
                     Log.d("notify_time_interval is now 5 hours", "success");
                     break;
                 case "24 hours":
                     recurring = 86400000;
                     ni.setSummary("24 hours");
+
+                    //For testing
                     Log.d("notify_time_interval is now 24 hours", "success");
                     break;
             }
 
+            //For testing
             Log.d("testing registering OnSharedPreferenceChangeListener onCreate", "success");
+
             prefsEditor.putBoolean("notification_switch", notify);
             prefsEditor.putString("notify_time_interval", notificationInterval);
             prefsEditor.commit();
+
+            //For testing
             Log.d("testing committing after changing settings", "success");
         }
     }
